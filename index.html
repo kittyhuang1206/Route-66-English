@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Route 66 English</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+button{font-family:inherit}
+img,svg{max-width:100%}
+:root{
+  --cr:#F5EDD8;--pa:#FDF6E3;--nv:#1A3A5C;--or:#C8570A;--gd:#B87800;--yl:#E8C840;
+  --bl:#2C6FA0;--gn:#3A6B48;--gr:#7A7570;--lg:#E8E0CC;--bd:#C8BC9E;
+  --tx:#1C1A17;--r:14px;--sh:0 3px 16px rgba(0,0,0,.13);
+  --f0:12px;--f1:15px;--f2:18px;--f3:22px;--f4:27px;--f5:36px
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cr);color:var(--tx);font-size:var(--f2);line-height:1.5;min-height:100vh;overflow-x:hidden}
+body.LG{--f0:14px;--f1:18px;--f2:21px;--f3:26px;--f4:32px;--f5:42px}
+/* ── HIGH CONTRAST ── */
+body.HC{--cr:#FFFFFF;--pa:#FFFFFF;--tx:#000000;--nv:#00204D;--or:#A8420A;--gn:#1E5230;--gr:#262626;--lg:#D6D6D6;--bd:#000000}
+body.HC .hero-tag,body.HC .scene-stop,body.HC .dzh,body.HC .vzh,body.HC .mi-lbl,body.HC .ch-sub,body.HC .sz,body.HC .speak-scene .sl,body.HC .pp-text .s{opacity:1!important}
+body.HC .vcard,body.HC .lcard,body.HC .dlg-wrap,body.HC .scene-body,body.HC .sug-box,body.HC .stamp-item,body.HC .stop-card{border:2px solid #000!important}
+body.HC .cbtn{border:2px solid #000}
+body.HC .den,body.HC .ven,body.HC .scene-story,body.HC .vzh,body.HC .dzh{color:#000}
+/* SCREENS */
+.sc{display:none;min-height:100vh}.sc.on{display:block}
+/* ── HOME ── */
+#sh{background:var(--cr)}
+.topbar{background:var(--nv);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.topbar-logo{color:var(--yl);font-size:var(--f1);font-weight:900;letter-spacing:2px}
+.topbar-btns{display:flex;gap:8px;flex-wrap:wrap}
+.tbtn{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.2);border-radius:7px;padding:5px 12px;font-size:var(--f0);cursor:pointer}
+.tbtn:hover,.tbtn.on{background:var(--or);border-color:var(--or)}
+/* HERO BANNER */
+.hero-banner{background:linear-gradient(170deg,#0D2540 0%,#1A3A5C 55%,#2C5A8C 100%);color:#fff;padding:12px 20px 14px;text-align:center;position:relative;overflow:hidden}
+.hero-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:4px 8px;position:relative}
+.hero-title{font-size:var(--f3);font-weight:900;letter-spacing:2px;color:var(--yl);position:relative}
+.hero-sub{font-size:var(--f2);font-weight:700;color:#A8CCE8;position:relative}
+.hero-zh{font-size:var(--f1);font-weight:700;color:var(--yl);position:relative}
+.hero-tag{display:none}
+.miles-pill{display:inline-flex;align-items:center;gap:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:40px;padding:6px 20px;margin-top:9px;position:relative}
+.mi-num{font-size:var(--f3);font-weight:900;color:var(--yl)}
+.mi-lbl{font-size:var(--f0);opacity:.65;margin-top:1px}
+.mi-div{width:1px;height:26px;background:rgba(255,255,255,.2)}
+.mi-bar-wrap{background:rgba(255,255,255,.1);border-radius:20px;height:5px;max-width:260px;margin:7px auto 0;position:relative}
+.mi-bar{background:linear-gradient(to right,var(--or),var(--yl));height:100%;border-radius:20px;transition:width .9s}
+/* MAP SECTION */
+.map-wrap{background:var(--pa);border:none;position:relative;overflow:hidden}
+.map-header{display:flex;align-items:center;gap:10px;padding:14px 18px 10px}
+.r66sign{background:#003399;color:#fff;border:3px solid #fff;border-radius:8px;padding:3px 9px;font-size:10px;font-weight:900;letter-spacing:1px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.3);flex-shrink:0;line-height:1.1}
+.r66sign .big{font-size:15px;font-weight:900;display:block}
+.map-hint{font-size:var(--f0);color:var(--gr);font-weight:600}
+/* ── WINDING ROUTE ── */
+.route-wrap{background:var(--pa);padding-bottom:8px}
+.route{position:relative;padding:8px 14px}
+.route-svg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.route-cap{position:relative;z-index:1;display:flex;align-items:center;gap:10px;margin:0 0 14px}
+.route-cap .cap-dot{width:90px;flex-shrink:0;text-align:center;font-size:30px}
+.route-cap .cap-txt{font-size:var(--f2);font-weight:800;color:var(--nv);line-height:1.2}
+.route-cap .cap-txt small{display:block;font-size:var(--f0);font-weight:600;color:var(--gr)}
+.stop-row{position:relative;z-index:1;display:flex;align-items:center;gap:10px;margin-bottom:16px;background:none;border:none;width:100%;padding:0;text-align:left;cursor:pointer;font-family:inherit}
+.stop-row:disabled{cursor:default}
+.stop-node{width:90px;flex-shrink:0;display:flex;justify-content:center}
+.stop-row.a .stop-node{justify-content:flex-start;padding-left:6px}
+.stop-row.b .stop-node{justify-content:flex-end;padding-right:6px}
+.node-dot{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:21px;border:4px solid var(--pa);box-shadow:0 2px 8px rgba(0,0,0,.25);background:#A8A090;color:#fff}
+.stop-card{flex:1;min-width:0;display:flex;align-items:center;gap:12px;background:var(--cr);border:2px solid var(--bd);border-radius:var(--r);padding:13px 14px;box-shadow:var(--sh);transition:transform .12s}
+.stop-row:not(:disabled):active .stop-card{transform:scale(.98)}
+.sc-icon{font-size:32px;flex-shrink:0;width:40px;text-align:center}
+.sc-text{flex:1;min-width:0}
+.sc-en{font-size:var(--f2);font-weight:800;color:var(--nv);line-height:1.2}
+.sc-zh{font-size:var(--f0);color:var(--gr);margin-top:3px}
+.sc-badge{font-size:var(--f0);font-weight:800;border-radius:20px;padding:6px 13px;white-space:nowrap;flex-shrink:0;background:var(--lg);color:var(--gr)}
+.stop-row.dn .stop-card{border-color:var(--gn);background:#F0FAF4}
+.stop-row.dn .node-dot{background:var(--gn);color:#fff}
+.stop-row.dn .sc-badge{background:#D4EDDA;color:var(--gn)}
+.stop-row.op .stop-card{border-color:var(--or);box-shadow:0 4px 16px rgba(200,87,10,.25)}
+.stop-row.op .node-dot{background:var(--or);color:#fff;animation:pulse 1.8s infinite}
+.stop-row.op .sc-badge{background:var(--or);color:#fff}
+@keyframes pulse{0%,100%{box-shadow:0 2px 8px rgba(0,0,0,.25)}50%{box-shadow:0 0 0 9px rgba(200,87,10,.18)}}
+.stop-row.lk{opacity:.55}
+.stop-row.lk .sc-en{color:var(--gr)}
+#rsvg{width:100%;display:block}
+/* PASSPORT BUTTON */
+.passport-btn{display:flex;align-items:center;gap:12px;background:var(--nv);color:#fff;border:none;border-radius:var(--r);padding:14px 20px;margin:14px 16px;cursor:pointer;width:calc(100% - 32px);transition:background .15s;box-shadow:var(--sh)}
+.passport-btn:hover{background:var(--bl)}
+.pp-icon{font-size:32px;flex-shrink:0}
+.pp-text .t{font-size:var(--f3);font-weight:700}
+.pp-text .s{font-size:var(--f0);opacity:.7;margin-top:2px}
+.pp-arrow{margin-left:auto;font-size:20px;opacity:.6}
+/* ── STOP SCREEN ── */
+#sstop{background:var(--cr)}
+.stop-hdr{color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.back-btn{background:none;border:2px solid rgba(255,255,255,.3);color:#fff;border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.back-btn:hover{background:rgba(255,255,255,.12)}
+.stop-hdr-txt{flex:1}
+.stop-hdr-name{font-size:var(--f3);font-weight:700}
+.stop-hdr-zh{font-size:var(--f0);opacity:.7;margin-top:1px}
+.mi-chip{background:var(--yl);color:var(--nv);border-radius:20px;padding:5px 13px;font-weight:800;font-size:var(--f0);white-space:nowrap}
+.prog-bg{height:4px}.prog-fill{background:var(--yl);height:100%;transition:width .4s}
+/* SCENE CARD */
+.scene-card{margin:16px;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.scene-banner{padding:22px 20px;position:relative;min-height:130px;display:flex;flex-direction:column;justify-content:flex-end}
+.scene-icon{font-size:52px;margin-bottom:8px}
+.scene-stop{font-size:var(--f0);font-weight:700;text-transform:uppercase;letter-spacing:2px;opacity:.75;margin-bottom:4px}
+.scene-title{font-size:var(--f4);font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.scene-body{background:var(--pa);padding:18px 20px;border:1px solid var(--bd);border-top:none;border-radius:0 0 var(--r) var(--r)}
+.scene-story{font-size:var(--f2);color:var(--tx);line-height:1.7;margin-bottom:14px}
+.scene-story strong{color:var(--nv)}
+.scene-listen{display:flex;gap:8px;margin-bottom:14px}
+/* Mike companion */
+.mike-bubble{display:flex;gap:12px;align-items:flex-start;background:#EFF6FF;border-radius:var(--r);border:1.5px solid #BDDCF8;padding:14px 16px;margin-bottom:14px}
+.mike-av{width:44px;height:44px;border-radius:50%;background:var(--nv);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:3px solid var(--yl)}
+.mike-body .mike-name{font-size:var(--f0);font-weight:700;color:var(--bl);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.mike-body .mike-text{font-size:var(--f2);color:var(--nv);font-weight:500}
+.start-stop-btn{display:block;width:100%;background:var(--or);color:#fff;border:none;border-radius:var(--r);padding:16px;font-size:var(--f3);font-weight:700;cursor:pointer;transition:background .15s}
+.start-stop-btn:hover{background:#A04008}
+/* ACTIVITY TABS */
+.act-tabs{display:flex;background:var(--pa);border-bottom:2px solid var(--lg);position:sticky;top:77px;z-index:99}
+.atab{flex:1;padding:11px 4px;text-align:center;font-size:11px;font-weight:700;color:var(--gr);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;line-height:1.4}
+.atab.on{color:var(--or);border-bottom-color:var(--or)}.atab.dn{color:var(--gn)}
+.act-sec{padding:18px 16px}
+/* VOCAB */
+.vocab-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.vcard{background:var(--pa);border-radius:var(--r);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden;margin-bottom:12px}
+.vcard-main{display:flex;align-items:center;gap:14px;padding:16px}
+.vic{font-size:40px;width:56px;text-align:center;flex-shrink:0}
+.ven{font-size:var(--f4);font-weight:900;color:var(--nv)}
+.vzh{font-size:var(--f1);color:var(--gr);margin-top:2px}
+.vcard-btns{display:flex;gap:0;border-top:1px solid var(--lg)}
+.vbtn{flex:1;background:none;border:none;border-right:1px solid var(--lg);padding:11px 6px;font-size:var(--f1);font-weight:600;cursor:pointer;color:var(--nv);transition:background .15s;display:flex;align-items:center;justify-content:center;gap:5px}
+.vbtn:last-child{border-right:none}
+.vbtn:hover{background:var(--lg)}
+.vbtn.pl{background:var(--or);color:#fff}
+.vex{padding:12px 16px;background:#F7F3EA;font-size:var(--f1);color:var(--bl);font-style:italic;border-top:1px solid var(--lg);display:none}
+/* DIALOGUE */
+.dlg-scene{background:var(--nv);color:#fff;border-radius:var(--r);padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.dlg-play-all{background:var(--yl);color:var(--nv);border:none;border-radius:30px;padding:8px 18px;font-size:var(--f1);font-weight:800;cursor:pointer;white-space:nowrap;margin-left:auto;flex-shrink:0}
+.dlg-play-all:hover{background:var(--or);color:#fff}
+.zh-tog{display:flex;align-items:center;gap:8px;background:var(--lg);color:var(--nv);border:none;border-radius:24px;padding:8px 16px;font-size:var(--f1);font-weight:600;cursor:pointer;margin-bottom:14px}
+.dlg-wrap{background:var(--pa);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--bd);overflow:hidden;margin-bottom:16px}
+.drow{display:flex;align-items:stretch;border-bottom:1px solid var(--lg)}.drow:last-child{border-bottom:none}
+.drow.staff .dmid{background:#F0F6FB}.drow.you .dmid{background:#FDF8EF}
+.dwho{width:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:12px 5px;border-right:1px solid var(--lg);flex-shrink:0}
+.dav{font-size:22px;line-height:1}
+.drl{font-size:9px;font-weight:700;color:var(--gr);text-align:center;text-transform:uppercase;letter-spacing:.4px;line-height:1.3}
+.dmid{flex:1;padding:12px 14px}
+.den{font-size:var(--f2);font-weight:600;color:var(--nv);line-height:1.5}
+.dzh{font-size:var(--f0);color:var(--gr);margin-top:4px;display:none}
+.daud{width:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-left:1px solid var(--lg);flex-shrink:0;padding:8px 3px}
+/* LISTEN */
+.challenge-hd{border-radius:var(--r);padding:18px;margin-bottom:16px;text-align:center}
+.ch-title{font-size:var(--f4);font-weight:900;color:#fff}
+.ch-sub{font-size:var(--f1);opacity:.8;margin-top:4px;color:#fff}
+.lcard{background:var(--pa);border-radius:var(--r);padding:18px;box-shadow:var(--sh);border:1px solid var(--bd)}
+.lcard-q{font-size:var(--f1);color:var(--gr);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.play-q{background:var(--nv);color:#fff;border:none;border-radius:var(--r);padding:13px 18px;font-size:var(--f2);font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.play-q:hover{background:var(--bl)}.play-q.pl{background:var(--or)}
+.choices{display:flex;flex-direction:column;gap:8px}
+.cbtn{background:var(--lg);border:2px solid transparent;border-radius:var(--r);padding:13px 15px;font-size:var(--f1);font-weight:600;cursor:pointer;text-align:left;transition:all .15s;color:var(--tx)}
+.cbtn:hover:not(:disabled){border-color:var(--bl);background:#D5E8F5}
+.cbtn.ok{background:#D4EDDA;border-color:var(--gn);color:var(--gn)}
+.cbtn.no{background:#FDDEDE;border-color:#B03030;color:#B03030}
+.res{font-size:var(--f2);font-weight:700;text-align:center;padding:12px;border-radius:var(--r);margin-top:10px}
+.res.ok{background:#D4EDDA;color:var(--gn)}.res.no{background:#FDDEDE;color:#B03030}
+/* SPEAK */
+.speak-scene{background:var(--nv);color:#fff;border-radius:var(--r);padding:18px;margin-bottom:14px}
+.speak-scene .sl{font-size:var(--f0);opacity:.6;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.speak-scene .sq{font-size:var(--f3);font-weight:700;line-height:1.4}
+.speak-scene .sz{font-size:var(--f1);opacity:.7;margin-top:4px}
+.sug-box{background:var(--lg);border-radius:var(--r);padding:12px 16px;margin-bottom:16px;border-left:4px solid var(--yl)}
+.sug-box .sl2{font-size:var(--f0);font-weight:700;color:var(--nv);margin-bottom:4px}
+.sug-box .st{font-size:var(--f2);color:var(--nv);font-style:italic}
+.mic-wrap{text-align:center;margin:6px 0 10px}
+.mic-btn{width:86px;height:86px;border-radius:50%;border:none;background:var(--or);color:#fff;font-size:36px;cursor:pointer;margin:0 auto;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(200,87,10,.38);transition:all .2s}
+.mic-btn:hover{background:#A04008}.mic-btn.rec{background:#A02020}
+.mic-lbl{font-size:var(--f0);color:var(--gr);margin-top:10px;font-weight:600}
+.skip-link{display:block;text-align:center;margin:0 auto 14px;background:none;border:none;color:var(--gr);text-decoration:underline;font-size:var(--f0);cursor:pointer}
+.fb-great{background:#D4EDDA;border:2px solid var(--gn);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.fb-try{background:#FFF3D0;border:2px solid var(--gd);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.fb-h{font-size:var(--f3);font-weight:800;margin-bottom:6px}
+.fb-great .fb-h{color:var(--gn)}.fb-try .fb-h{color:#7A5800}
+.fb-row{font-size:var(--f1);margin-top:4px} .fb-row strong{color:var(--nv)}
+/* mike speaks after feedback */
+.mike-fb{display:flex;gap:10px;align-items:flex-start;background:#EFF6FF;border-radius:var(--r);border:1.5px solid #BDDCF8;padding:12px 14px;margin-bottom:12px}
+/* NEXT BTN */
+.next-btn{display:block;width:100%;background:var(--or);color:#fff;border:none;border-radius:var(--r);padding:15px;font-size:var(--f3);font-weight:700;cursor:pointer;margin-top:18px}
+.next-btn:hover{background:#A04008}.next-btn.gn{background:var(--gn)}.next-btn.gn:hover{background:#2D5438}
+/* AUDIO BTN */
+.ab{background:#D5E8F5;border:none;border-radius:50%;width:46px;height:46px;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.ab:hover{background:var(--bl);color:#fff}.ab.pl{background:var(--or);color:#fff}
+.ab.sm{width:40px;height:34px;font-size:15px;border-radius:9px}
+.ab.wide{width:auto;height:auto;min-height:44px;padding:9px 18px;gap:7px;font-size:var(--f1);font-weight:700;color:#fff;background:var(--bl);border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,.18)}
+.ab.wide:hover{background:var(--nv);color:#fff}
+.ab.wide:active{transform:translateY(1px)}
+/* ── CELEBRATE ── */
+#scel{background:var(--pa);position:relative;overflow:hidden}
+.cel{text-align:center;padding:44px 24px;position:relative;z-index:2}
+/* confetti */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.cft{position:absolute;top:-24px;width:11px;height:15px;border-radius:2px;opacity:.95;animation:cfall linear forwards}
+@keyframes cfall{to{transform:translateY(108vh) rotate(720deg);opacity:.9}}
+/* game complete block */
+.cel-game{background:linear-gradient(150deg,#0D2540,#1A3A5C 60%,#2C5A8C);color:#fff;border-radius:18px;border:3px solid var(--yl);padding:22px 20px;margin:0 0 18px;box-shadow:0 8px 28px rgba(0,0,0,.3)}
+.cel-game .cg-trophy{font-size:60px;animation:sIn .6s cubic-bezier(.175,.885,.32,1.275)}
+.cel-game .cg-h{font-size:var(--f4);font-weight:900;color:var(--yl);margin-top:4px}
+.cel-game .cg-s{font-size:var(--f2);color:#A8CCE8;font-weight:700;margin-top:4px}
+.cel-game .cg-route{font-size:var(--f1);opacity:.85;margin-top:8px}
+.daughter-note{background:#FFF6E0;border:2px dashed var(--gd);border-radius:14px;padding:16px 18px;margin:0 0 18px;text-align:left;display:flex;gap:12px;align-items:flex-start}
+.daughter-note .dn-heart{font-size:30px;flex-shrink:0}
+.daughter-note .dn-t{font-size:var(--f2);color:#5A4500;font-weight:700;line-height:1.5}
+.daughter-note .dn-zh{font-size:var(--f1);color:#7A6020;margin-top:6px;font-weight:600}
+.cel-stamp{width:140px;height:140px;border-radius:50%;background:var(--nv);color:var(--yl);font-size:52px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:5px solid var(--yl);animation:sIn .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes sIn{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
+.cel h1{font-size:var(--f5);font-weight:900;color:var(--nv);margin-bottom:5px}
+.cel .cs{font-size:var(--f3);color:var(--or);font-weight:700;margin-bottom:8px}
+.cel .cz{font-size:var(--f1);color:var(--gr);margin-bottom:16px}
+.cel-mi{background:var(--yl);color:var(--nv);border-radius:var(--r);padding:12px 24px;display:inline-block;font-size:var(--f4);font-weight:800;margin-bottom:14px}
+.cel-nxt{background:#E8F4FF;border:2px solid var(--bl);border-radius:var(--r);padding:12px 20px;font-size:var(--f1);font-weight:700;color:var(--bl);margin-bottom:20px}
+.hb{background:var(--nv);color:#fff;border:none;border-radius:var(--r);padding:15px 38px;font-size:var(--f3);font-weight:700;cursor:pointer}
+.hb:hover{background:var(--bl)}
+/* ── PASSPORT ── */
+#spass{background:#1A1208}
+.pass-cover{background:linear-gradient(145deg,#1A3A5C,#0D2030);margin:20px;border-radius:20px;padding:28px 24px;text-align:center;border:2px solid #C8A040;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.pass-title{font-size:var(--f1);font-weight:700;color:#C8A040;text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.pass-main{font-size:var(--f5);font-weight:900;color:#fff;margin-bottom:6px}
+.pass-sub{font-size:var(--f3);color:#A8CCE8;font-weight:700;margin-bottom:16px}
+.pass-holder{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 16px;text-align:left}
+.pass-holder-lbl{font-size:var(--f0);color:#C8A040;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.pass-holder-name{font-size:var(--f3);font-weight:700;color:#fff}
+.pass-count{text-align:center;color:#E8C840;font-size:var(--f2);font-weight:800;margin:0 20px 4px}
+.pass-count small{display:block;color:#A8987A;font-size:var(--f0);font-weight:600;margin-top:2px}
+.stamps-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 12px;margin:14px 18px 24px;justify-items:center}
+.stamp-item{position:relative;width:100%;max-width:148px;aspect-ratio:1/1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px;background:#FBF4E2}
+.stamp-item::before{content:'';position:absolute;inset:7px;border-radius:50%;pointer-events:none}
+.stamp-item.earned{border:3px solid var(--c);color:var(--c);box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.stamp-item.earned::before{border:2px solid var(--c);opacity:.9}
+.stamp-item.locked{border:3px dashed #C5B996;color:#A89E88;background:#F2ECDC}
+.stamp-item.locked::before{border:2px dashed #D6CCB0}
+.st-top{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.85}
+.st-ic{font-size:38px;line-height:1;margin:2px 0}
+.stamp-item.locked .st-ic{filter:grayscale(1);opacity:.5}
+.st-nm{font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;line-height:1.05;max-width:108px}
+.st-zh{font-size:10px;font-weight:600;opacity:.8;margin-top:1px}
+.st-bot{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+body.LG .st-ic{font-size:42px}
+body.LG .st-nm{font-size:13px}
+.back-home{display:block;background:var(--nv);color:#fff;border:none;border-radius:var(--r);padding:14px;font-size:var(--f3);font-weight:700;cursor:pointer;margin:0 20px 14px;width:calc(100%-40px)}
+.reset-btn{display:block;margin:0 20px 30px;width:calc(100% - 40px);background:#fff;color:#C0392B;border:2.5px solid #E0573E;border-radius:var(--r);padding:13px;font-size:var(--f2);font-weight:800;cursor:pointer;line-height:1.3}
+.reset-btn span{font-size:var(--f0);font-weight:600;opacity:.8}
+.reset-btn:hover{background:#FDECEA}
+.reset-btn:active{transform:scale(.98)}
+/* ── PHONE TUNING ── */
+@media (max-width:420px){
+  .route{padding:8px 10px}
+  .stop-row{gap:8px}
+  .stop-node{width:74px}
+  .route-cap .cap-dot{width:74px}
+  .stop-card{padding:12px 11px;gap:9px}
+  .sc-icon{width:34px;font-size:28px}
+  .sc-badge{font-size:10px;padding:5px 9px}
+  .stamps-grid{margin:14px 12px 24px;gap:18px 10px}
+  .scene-card{margin:12px}
+  .act-sec{padding:16px 12px}
+  .dwho{width:50px}
+  .daud{width:50px}
+  .scene-listen{flex-wrap:wrap}
+  .topbar{padding:10px 12px}
+}
+@media (max-width:340px){
+  .stop-node{width:64px}
+  .route-cap .cap-dot{width:64px}
+  .node-dot{width:42px;height:42px;font-size:19px}
+}
+</style></head><body>
+<!-- ══ HOME ══ -->
+<div id="sh" class="sc on">
+  <div class="topbar">
+    <div class="topbar-logo">ROUTE 66</div>
+    <div class="topbar-btns">
+      <button class="tbtn" id="bL" onclick="toggleL()">大字 Aa</button>
+      <button class="tbtn" id="bH" onclick="toggleH()">高對比</button>
+      <button class="tbtn on" id="bSx" onclick="toggleSx()">🔊 音效</button>
+    </div>
+  </div>
+  <div class="hero-banner">
+    <div class="hero-row">
+      <div class="hero-title">ROUTE 66</div>
+      <div class="hero-sub">ENGLISH</div>
+      <div class="hero-zh">一路學英文</div>
+    </div>
+    <div class="miles-pill">
+      <div><div class="mi-num" id="md">0</div><div class="mi-lbl">/ 8,350 mi</div></div>
+      <div class="mi-div"></div>
+      <div><div class="mi-num" id="sd">0/10</div><div class="mi-lbl">stamps</div></div>
+    </div>
+    <div class="mi-bar-wrap"><div class="mi-bar" id="mf" style="width:0%"></div></div>
+  </div>
+  <div class="route-wrap">
+    <div class="map-header">
+      <div class="r66sign">HISTORIC<span class="big">66</span>ROUTE</div>
+      <div class="map-hint">選擇一站開始 · Tap a stop to begin</div>
+    </div>
+    <div class="route" id="route"></div>
+  </div>
+  <button class="passport-btn" onclick="show('spass')">
+    <div class="pp-icon">📔</div>
+    <div class="pp-text"><div class="t">My Travel Passport</div><div class="s">我的旅遊護照 · Collect stamps</div></div>
+    <div class="pp-arrow">›</div>
+  </button>
+</div>
+<!-- ══ STOP ══ -->
+<div id="sstop" class="sc">
+  <div class="stop-hdr" id="shdr">
+    <button class="back-btn" onclick="goHome()">←</button>
+    <div class="stop-hdr-txt">
+      <div class="stop-hdr-name" id="shn"></div>
+      <div class="stop-hdr-zh" id="shz"></div>
+    </div>
+    <div class="mi-chip" id="lc">+0 mi</div>
+  </div>
+  <div class="prog-bg"><div class="prog-fill" id="lp" style="width:0%"></div></div>
+  <!-- SCENE (shown first) -->
+  <div id="scene-wrap"></div>
+  <!-- ACTIVITIES (shown after scene) -->
+  <div id="acts-wrap" style="display:none">
+    <div class="act-tabs">
+      <button class="atab on" id="tw" onclick="sTab('w')">🗺 單字<br>Words</button>
+      <button class="atab" id="tc" onclick="sTab('c')">💬 對話<br>Chat</button>
+      <button class="atab" id="tl" onclick="sTab('l')">🎧 挑戰<br>Challenge</button>
+      <button class="atab" id="ts" onclick="sTab('s')">🎤 口說<br>Speak</button>
+    </div>
+    <div id="sw" class="act-sec"></div>
+    <div id="sc2" class="act-sec" style="display:none"></div>
+    <div id="sl2" class="act-sec" style="display:none"></div>
+    <div id="ss" class="act-sec" style="display:none"></div>
+  </div>
+</div>
+<!-- ══ CELEBRATE ══ -->
+<div id="scel" class="sc">
+  <div id="confetti"></div>
+  <div class="cel">
+    <!-- shown only when the whole game is finished -->
+    <div class="cel-game" id="cgame" style="display:none">
+      <div class="cg-trophy">🏆</div>
+      <div class="cg-h">恭喜全部完成！</div>
+      <div class="cg-s">You Finished the Whole Journey!</div>
+      <div class="cg-route">🇹🇼 台灣 Taiwan ✈️ ➜ 🤠 休士頓 Houston</div>
+    </div>
+    <div class="daughter-note" id="dnote" style="display:none">
+      <div class="dn-heart">💛</div>
+      <div>
+        <div class="dn-t">This is just the beginning! Your daughter will keep building this game so you can learn even more English. 🚗💨</div>
+        <div class="dn-zh">這只是開始！女兒會繼續為你打造更多關卡，陪你學更多英文。❤️</div>
+      </div>
+    </div>
+    <div id="cstop-block">
+      <div style="font-size:44px;margin-bottom:12px">🎊</div>
+      <div class="cel-stamp" id="cst">✈️</div>
+      <h1 id="cel-h1">Stop Complete!</h1>
+      <div class="cs" id="csb"></div>
+      <div class="cz" id="czb"></div>
+    </div>
+    <div class="cel-mi" id="cmb"></div>
+    <div class="cel-nxt" id="cnb"></div>
+    <div style="font-size:var(--f1);color:var(--gr);margin-bottom:22px" id="cmsg"></div>
+    <button class="hb" onclick="goHome()">🗺️ 繼續旅程 Continue Journey</button>
+  </div>
+</div>
+<!-- ══ PASSPORT ══ -->
+<div id="spass" class="sc">
+  <div class="topbar">
+    <div class="topbar-logo">📔 My Passport</div>
+    <button class="tbtn" onclick="goHome()">← Back</button>
+  </div>
+  <div class="pass-cover">
+    <div class="pass-title">United States of America</div>
+    <div class="pass-main">ROUTE 66</div>
+    <div class="pass-sub">Travel Passport · 旅遊護照</div>
+    <div class="pass-holder">
+      <div class="pass-holder-lbl">Traveler · 旅行者</div>
+      <div class="pass-holder-name">Taiwan Explorer 🇹🇼</div>
+    </div>
+  </div>
+  <div class="pass-count" id="passcount"></div>
+  <div id="stamps-grid" class="stamps-grid"></div>
+  <button class="back-home" onclick="goHome()" style="width:calc(100% - 40px)">← 回到地圖 Back to Map</button>
+  <button class="reset-btn" onclick="resetAll()">🗑️ 重新開始旅程<br><span>Reset all progress · 清除所有進度</span></button>
+</div>
+<script>
+/* ═══════════ DATA ═══════════ */
+const STOPS=[
+  {id:'airport',ic:'✈️',en:'Airport',zh:'機場',color:'#1A3A5C',
+   story:'你剛抵達台灣桃園機場。\n你的班機飛往洛杉磯，兩小時後起飛。\n航空公司人員走了過來…',
+   storyen:'You have arrived at Taoyuan Airport.\nYour flight to Los Angeles leaves in two hours.\nThe airline staff approaches you...',
+   mike:"Let's start your American adventure! First stop — the airport. Don't worry, I'll guide you through.",
+   wo:[{i:'📄',e:'Passport',z:'護照',x:'May I see your passport, please?'},{i:'🎫',e:'Boarding Pass',z:'登機證',x:'Please have your boarding pass ready.'},{i:'🧳',e:'Luggage',z:'行李',x:'How many bags of luggage do you have?'},{i:'🚪',e:'Gate',z:'登機門',x:'Your gate is B12.'},{i:'🛂',e:'Customs',z:'海關',x:'Please fill out the customs form.'}],
+   dl:[{r:'staff',a:'👩‍✈️',e:'May I see your passport, please?',z:'請問可以看您的護照嗎？'},{r:'you',a:'🧑‍🦳',e:'Here you are.',z:'在這裡。'},{r:'staff',a:'👩‍✈️',e:'What is the purpose of your visit?',z:'您來的目的是什麼？'},{r:'you',a:'🧑‍🦳',e:'I am visiting my family.',z:'我是來探親的。'},{r:'staff',a:'👩‍✈️',e:'Enjoy your stay! Your gate is B12.',z:'祝旅途愉快！登機門是B12。'}],
+   lq:[{a:'Where is your gate?',c:['Where is your luggage?','Where is your gate?','Where is your passport?'],n:1},{a:'May I see your boarding pass?',c:['May I see your passport?','May I see your luggage?','May I see your boarding pass?'],n:2},{a:'Please fill out the customs form.',c:['Please go to your gate.','Please fill out the customs form.','Please show your luggage.'],n:1}],
+   challenge:'✈️ Airport Challenge',challengeZh:'機場任務',
+   sc:'機場 · Check-in Counter',aq:'Where are you flying today?',az:'你今天要飛去哪裡？',sg:'I am flying to Los Angeles.',
+   mikeDone:"You made it through the airport! That wasn't so hard, was it? Welcome to your American journey! 🎉"},
+  {id:'arrival',ic:'🚕',en:'Arrival',zh:'抵達美國',color:'#2C5A1A',
+   story:'飛行了十一個小時，你終於降落洛杉磯！\n你需要通過入境審查，然後找到你的女兒。\n移民官員站在窗口前等著你…',
+   storyen:"After 11 hours, you've landed in Los Angeles!\nYou need to pass immigration and find your daughter.\nThe immigration officer waits at the booth...",
+   mike:"Welcome to America! Immigration can feel scary, but stay calm. I'll help you with exactly what to say.",
+   wo:[{i:'🛂',e:'Immigration',z:'入境審查',x:'Please proceed to immigration.'},{i:'🧳',e:'Baggage Claim',z:'行李提領',x:'Your bags are at baggage claim, area C.'},{i:'🚕',e:'Taxi',z:'計程車',x:'I need a taxi to downtown, please.'},{i:'🚗',e:'Pickup',z:'接機',x:'My daughter is waiting at the pickup area.'},{i:'📍',e:'Address',z:'地址',x:'The address is 123 Main Street, Los Angeles.'}],
+   dl:[{r:'staff',a:'👮',e:'Passport and customs form, please.',z:'請出示護照和入境表格。'},{r:'you',a:'🧑‍🦳',e:'Here is my passport.',z:'這是我的護照。'},{r:'staff',a:'👮',e:'How long will you be staying?',z:'您打算停留多久？'},{r:'you',a:'🧑‍🦳',e:'Two weeks. I am visiting my daughter.',z:'兩週。我來探望我的女兒。'},{r:'staff',a:'👮',e:'Welcome to the United States!',z:'歡迎來到美國！'}],
+   lq:[{a:'Where is the baggage claim?',c:['Where is the exit?','Where is the baggage claim?','Where is the taxi?'],n:1},{a:'Please proceed to immigration.',c:['Please proceed to immigration.','Please go to baggage claim.','Please wait for pickup.'],n:0},{a:'Welcome to the United States.',c:['Welcome to the hotel.','Welcome to the restaurant.','Welcome to the United States.'],n:2}],
+   challenge:'🛬 Arrival Challenge',challengeZh:'抵達任務',
+   sc:'洛杉磯機場 · Immigration Booth',aq:'How long are you staying in the U.S.?',az:'您打算在美國待多久？',sg:'I am staying for two weeks.',
+   mikeDone:"You're officially in America! Your daughter must be so happy to see you. Let's get to the hotel!"},
+  {id:'hotel',ic:'🏨',en:'Hotel',zh:'飯店',color:'#5A2A00',
+   story:'你終於到了飯店，旅途真的很累。\n前台接待員看著你微笑。\n"Do you have a reservation?" 她問道。\n你能回答嗎？',
+   storyen:"You finally arrive at the hotel, exhausted from the journey.\nThe front desk receptionist smiles at you.\n\"Do you have a reservation?\" she asks.\nCan you answer?",
+   mike:"Great news — we have a room waiting! Hotels in America are very friendly. Let's check in.",
+   wo:[{i:'📋',e:'Reservation',z:'預訂',x:'I have a reservation under the name Huang.'},{i:'🔑',e:'Check-in',z:'辦理入住',x:'What time is check-in?'},{i:'🗝️',e:'Room Key',z:'房卡',x:'Here is your room key, room 405.'},{i:'🛗',e:'Elevator',z:'電梯',x:'The elevator is down the hall on the right.'},{i:'🍳',e:'Breakfast',z:'早餐',x:'Breakfast is served from 7 to 10 AM.'}],
+   dl:[{r:'staff',a:'🧑‍💼',e:'Good evening! Do you have a reservation?',z:'晚安！請問您有預訂嗎？'},{r:'you',a:'🧑‍🦳',e:'Yes, my name is Huang. I reserved one room.',z:'有的，我姓黃。我訂了一間房。'},{r:'staff',a:'🧑‍💼',e:'I found your booking. Room 405.',z:'找到預訂了。405房。'},{r:'you',a:'🧑‍🦳',e:'What time is breakfast?',z:'早餐是幾點？'},{r:'staff',a:'🧑‍💼',e:'Breakfast is from 7 to 10 AM in the lobby.',z:'早餐在大廳，7點到10點。'}],
+   lq:[{a:'I have a reservation.',c:['I have a question.','I have a reservation.','I have a room key.'],n:1},{a:'Breakfast is served at seven AM.',c:['Breakfast is served at seven AM.','Checkout is at noon.','The elevator is on the right.'],n:0},{a:'Here is your room key.',c:['Here is your bill.','Here is your key card.','Here is your room key.'],n:2}],
+   challenge:'🏨 Hotel Challenge',challengeZh:'飯店任務',
+   sc:'飯店大廳 · Front Desk',aq:'What time would you like a wake-up call?',az:'您想要幾點的叫醒服務？',sg:'I would like a wake-up call at seven AM.',
+   mikeDone:"Rest well tonight! Tomorrow we hit Route 66. Big adventure ahead!"},
+  {id:'roadtrip',ic:'🚗',en:'Road Trip',zh:'公路旅行',color:'#3A1A5C',
+   story:'早晨的陽光照在公路上。\n你們租了一輛車，準備出發！\n油表顯示需要加油了。\n你開進加油站…',
+   storyen:"Morning sun on the open road.\nYou've rented a car and you're ready to go!\nThe gas gauge says you need fuel.\nYou pull into a gas station...",
+   mike:"This is it — Route 66! The most famous road in America. Let's fuel up and hit the road!",
+   wo:[{i:'⛽',e:'Gas Station',z:'加油站',x:'Where is the nearest gas station?'},{i:'🚻',e:'Restroom',z:'廁所',x:'Where is the restroom, please?'},{i:'🛣️',e:'Exit',z:'出口',x:'Take exit 42 toward Flagstaff.'},{i:'🅿️',e:'Parking',z:'停車',x:'Is there parking nearby?'},{i:'🚦',e:'Speed Limit',z:'速限',x:'The speed limit is 65 miles per hour.'}],
+   dl:[{r:'staff',a:'👷',e:'Hi! Can I help you?',z:'您好！需要幫忙嗎？'},{r:'you',a:'🧑‍🦳',e:'Yes, I need to fill up the tank, please.',z:'是的，我想加滿油。'},{r:'staff',a:'👷',e:'Which pump are you at?',z:'您在哪個加油機？'},{r:'you',a:'🧑‍🦳',e:'Pump number three.',z:'三號加油機。'},{r:'staff',a:'👷',e:'That will be twenty-four dollars.',z:'共二十四美元。'}],
+   lq:[{a:'Where is the nearest gas station?',c:['Where is the restroom?','Where is the nearest gas station?','Where is the parking lot?'],n:1},{a:'The speed limit is sixty-five.',c:['The exit is on the right.','The parking is full.','The speed limit is sixty-five.'],n:2},{a:'Take exit forty-two.',c:['Take exit forty-two.','Turn left at the light.','Go straight for one mile.'],n:0}],
+   challenge:'🚗 Road Trip Challenge',challengeZh:'公路任務',
+   sc:'公路加油站 · Gas Station',aq:'How much gas would you like?',az:'您要加多少油？',sg:'Please fill it up.',
+   mikeDone:"Great driving! You handled that like a pro. Next stop — coffee time!"},
+  {id:'coffee',ic:'☕',en:'Coffee Shop',zh:'咖啡店',color:'#5A3010',
+   story:'你開車穿越小鎮。\n你看到一間溫馨的咖啡店。\n一杯熱咖啡會讓你精神百倍！\n你走進去，店員向你打招呼…',
+   storyen:"You drive through a small American town.\nYou spot a cozy coffee shop.\nA hot coffee will really hit the spot!\nYou walk in, and the barista greets you...",
+   mike:"American coffee shops are so cozy! Don't be shy — just tell them what you want.",
+   wo:[{i:'☀️',e:'Hot',z:'熱的',x:'I would like a hot coffee, please.'},{i:'🧊',e:'Iced',z:'冰的',x:'Can I have an iced latte?'},{i:'🥤',e:'Small',z:'小杯',x:'One small coffee, please.'},{i:'🍵',e:'Medium',z:'中杯',x:'A medium green tea latte, please.'},{i:'🧾',e:'Receipt',z:'收據',x:'Can I have a receipt, please?'}],
+   dl:[{r:'staff',a:'👩‍🍳',e:'Hi! What can I get for you?',z:'您好！您想要什麼？'},{r:'you',a:'🧑‍🦳',e:'A medium hot coffee, please.',z:'一杯中杯熱咖啡。'},{r:'staff',a:'👩‍🍳',e:'Any milk or sugar?',z:'需要加牛奶或糖嗎？'},{r:'you',a:'🧑‍🦳',e:'Just a little milk, please.',z:'只要一點牛奶。'},{r:'staff',a:'👩‍🍳',e:'What is your name for the order?',z:'請問您的名字？'}],
+   lq:[{a:'Can I have an iced coffee?',c:['Can I have a hot tea?','Can I have an iced coffee?','Can I have a receipt?'],n:1},{a:'What size would you like?',c:['What size would you like?','What flavor do you want?','How many cups?'],n:0},{a:'Can I have a receipt please?',c:['Can I pay by card?','Can I get a refund?','Can I have a receipt please?'],n:2}],
+   challenge:'☕ Coffee Challenge',challengeZh:'咖啡挑戰',
+   sc:'美國咖啡店 · Coffee Shop',aq:'What would you like to drink today?',az:'您今天想喝什麼？',sg:'I would like a medium hot coffee, please.',
+   mikeDone:"Perfect order! You sounded just like a local. Onward to lunch!"},
+  {id:'restaurant',ic:'🍔',en:'Restaurant',zh:'餐廳',color:'#6A1A1A',
+   story:'路上開了好久，你的肚子咕嚕叫了。\n你走進一家美式餐廳。\n服務生走過來遞給你菜單…\n準備好點餐了嗎？',
+   storyen:"After a long drive, your stomach is growling.\nYou walk into a classic American diner.\nThe waiter comes over and hands you a menu...\nReady to order?",
+   mike:"American diners are great! Big portions, friendly service. Let me show you what to say.",
+   wo:[{i:'📋',e:'Menu',z:'菜單',x:'Could I see the menu, please?'},{i:'💧',e:'Water',z:'水',x:'Can I have some water, please?'},{i:'✏️',e:'Order',z:'點餐',x:'Are you ready to order?'},{i:'🧾',e:'Check',z:'帳單',x:'Can we have the check, please?'},{i:'💵',e:'Tip',z:'小費',x:'Is the tip included in the bill?'}],
+   dl:[{r:'staff',a:'🧑‍🍳',e:'Good evening! Here is your menu.',z:'晚安！這是您的菜單。'},{r:'you',a:'🧑‍🦳',e:'Thank you. Could I have some water?',z:'謝謝。可以給我水嗎？'},{r:'staff',a:'🧑‍🍳',e:'Of course. Are you ready to order?',z:'當然。準備好點餐了嗎？'},{r:'you',a:'🧑‍🦳',e:'Yes. I will have the grilled salmon.',z:'好的。我要烤鮭魚。'},{r:'staff',a:'🧑‍🍳',e:'Excellent choice!',z:'好選擇！'}],
+   lq:[{a:'Are you ready to order?',c:['Are you ready to pay?','Are you ready to order?','Are you ready to leave?'],n:1},{a:'Can we have the check please?',c:['Can we see the menu?','Can we have more water?','Can we have the check please?'],n:2},{a:'Is the tip included?',c:['Is the tax included?','Is the tip included?','Is the service included?'],n:1}],
+   challenge:'🍔 Restaurant Challenge',challengeZh:'餐廳任務',
+   sc:'美式餐廳 · Diner',aq:'What would you like to order tonight?',az:'您今晚想點什麼？',sg:'I will have the grilled salmon, please.',
+   mikeDone:"That meal was delicious! You ordered like a pro. Time to hit the road again!"},
+  {id:'store',ic:'🛒',en:'Convenience Store',zh:'便利商店',color:'#1A4A3A',
+   story:'公路旅行少不了要停下來買東西。\n你走進一家便利商店。\n你想買瓶裝水和點心。\n收銀台前，店員問道…',
+   storyen:"Every road trip needs a convenience store stop.\nYou walk into a 7-Eleven.\nYou want to buy bottled water and snacks.\nAt the register, the cashier asks...",
+   mike:"Convenience stores are everywhere in America! Great for road trip snacks.",
+   wo:[{i:'💵',e:'Cash',z:'現金',x:'I will pay with cash.'},{i:'💳',e:'Credit Card',z:'信用卡',x:'Do you accept credit cards?'},{i:'🛍️',e:'Bag',z:'購物袋',x:'Can I have a bag, please?'},{i:'💧',e:'Bottled Water',z:'瓶裝水',x:'Where is the bottled water?'},{i:'🚻',e:'Restroom',z:'廁所',x:'Is there a restroom I can use?'}],
+   dl:[{r:'staff',a:'🧑‍💼',e:'Did you find everything okay?',z:'您找到需要的東西了嗎？'},{r:'you',a:'🧑‍🦳',e:'Yes. Do you accept credit cards?',z:'找到了。接受信用卡嗎？'},{r:'staff',a:'🧑‍💼',e:'Yes, Visa and Mastercard.',z:'是的，接受Visa和萬事達卡。'},{r:'you',a:'🧑‍🦳',e:'Great. Can I have a bag?',z:'太好了。可以給我袋子嗎？'},{r:'staff',a:'🧑‍💼',e:'Sure! Bags are five cents each.',z:'當然！每個袋子五美分。'}],
+   lq:[{a:'Do you accept credit cards?',c:['Do you accept cash?','Do you have a restroom?','Do you accept credit cards?'],n:2},{a:'Where is the bottled water?',c:['Where is the bottled water?','Where is the restroom?','Where is the exit?'],n:0},{a:'Can I have a bag please?',c:['Can I pay by phone?','Can I have a bag please?','Can I have a receipt?'],n:1}],
+   challenge:'🛒 Store Challenge',challengeZh:'商店任務',
+   sc:'便利商店 · Convenience Store',aq:'How would you like to pay?',az:'您要怎麼付款？',sg:'I would like to pay with my credit card.',
+   mikeDone:"Snacks secured! You're basically a Route 66 veteran now. On to the great outdoors!"},
+  {id:'park',ic:'🌳',en:'National Park',zh:'國家公園',color:'#1A4A20',
+   story:'你的女兒說：「爸，我要帶你去看大峽谷！」\n你們來到國家公園入口。\n一位護林員走了過來，熱情地說歡迎…',
+   storyen:"Your daughter says: \"Dad, I'm taking you to see the Grand Canyon!\"\nYou arrive at the national park entrance.\nA park ranger walks over and greets you warmly...",
+   mike:"The Grand Canyon! One of the most beautiful places on Earth. This is what we came for!",
+   wo:[{i:'🥾',e:'Trail',z:'步道',x:'Which trail leads to the waterfall?'},{i:'🗺️',e:'Map',z:'地圖',x:'Could I have a map of the park?'},{i:'🏛️',e:'Visitor Center',z:'遊客中心',x:'The visitor center closes at 5 PM.'},{i:'🎟️',e:'Entrance Fee',z:'入場費',x:'The entrance fee is thirty-five dollars.'},{i:'🚻',e:'Restroom',z:'廁所',x:'The nearest restroom is half a mile ahead.'}],
+   dl:[{r:'staff',a:'🎩',e:'Welcome to the Grand Canyon!',z:'歡迎來到大峽谷！'},{r:'you',a:'🧑‍🦳',e:'Thank you. Can I have a map?',z:'謝謝。可以給我地圖嗎？'},{r:'staff',a:'🎩',e:'Of course. The South Rim Trail is easy.',z:'當然。南緣步道很好走。'},{r:'you',a:'🧑‍🦳',e:'How long is the trail?',z:'步道有多長？'},{r:'staff',a:'🎩',e:'About two miles. Enjoy your visit!',z:'大約兩英里。祝您愉快！'}],
+   lq:[{a:'Could I have a map of the park?',c:['Could I have a map of the park?','Could I see the entrance fee?','Could I use the restroom?'],n:0},{a:'The visitor center is open until five.',c:['The trail is closed today.','The entrance fee is thirty-five.','The visitor center is open until five.'],n:2},{a:'Which trail leads to the waterfall?',c:['How far is the restroom?','Which trail leads to the waterfall?','Where is the visitor center?'],n:1}],
+   challenge:'🌳 Park Challenge',challengeZh:'公園任務',
+   sc:'國家公園 · Visitor Center',aq:'Which trail are you planning to hike?',az:'您打算走哪條步道？',sg:'I would like to walk the easy trail.',
+   mikeDone:"That view was INCREDIBLE! You even chatted with the ranger. I'm so proud of you!"},
+  {id:'pharmacy',ic:'🏥',en:'Pharmacy',zh:'藥局',color:'#3A1A5C',
+   story:'旅途中，你感到有點頭痛。\n你的女兒帶你去附近的藥局。\n藥師看到你走進來，親切地問：\n「Can I help you?」',
+   storyen:"During the trip, you start to feel a headache coming on.\nYour daughter takes you to a nearby pharmacy.\nThe pharmacist sees you walk in and kindly asks:\n\"Can I help you?\"",
+   mike:"Don't worry — American pharmacies are very helpful. You can buy many medicines without a prescription.",
+   wo:[{i:'🤕',e:'Headache',z:'頭痛',x:'I have a headache. What do you recommend?'},{i:'🤧',e:'Cold Medicine',z:'感冒藥',x:'Where is the cold medicine?'},{i:'💊',e:'Prescription',z:'處方箋',x:'I have a prescription from my doctor.'},{i:'🌸',e:'Allergy',z:'過敏',x:'I need something for my allergies.'},{i:'💉',e:'Painkiller',z:'止痛藥',x:'Can I buy a painkiller without a prescription?'}],
+   dl:[{r:'staff',a:'👩‍⚕️',e:'Hi! Can I help you find something?',z:'您好！我可以幫您找什麼嗎？'},{r:'you',a:'🧑‍🦳',e:'I have a headache. What do you recommend?',z:'我頭痛。有什麼推薦的嗎？'},{r:'staff',a:'👩‍⚕️',e:'Try Tylenol or Advil. Both work well.',z:'可以試試泰諾或愛德維。'},{r:'you',a:'🧑‍🦳',e:'Do I need a prescription?',z:'需要處方箋嗎？'},{r:'staff',a:'👩‍⚕️',e:'No, these are over-the-counter.',z:'不需要，這些是非處方藥。'}],
+   lq:[{a:'I need something for my headache.',c:['I need something for my headache.','I need a prescription.','I need cold medicine.'],n:0},{a:'Do I need a prescription for this?',c:['Is this for allergies?','Do I need a prescription for this?','Where is the painkiller?'],n:1},{a:'These are over the counter medicines.',c:['These are prescription medicines.','These are expensive medicines.','These are over the counter medicines.'],n:2}],
+   challenge:'🏥 Pharmacy Challenge',challengeZh:'藥局任務',
+   sc:'美國藥局 · Pharmacy',aq:'What are your symptoms today?',az:'您今天有什麼症狀？',sg:'I have a headache and I feel tired.',
+   mikeDone:"Feeling better already! One more stop on our journey. You've come so far!"},
+  {id:'meet',ic:'👋',en:'Meeting People',zh:'認識新朋友',color:'#1A3A5C',
+   story:'在休士頓，你坐在公園的長椅上。\n一位美國人坐到你旁邊，微笑著說：\n「Beautiful day, isn\'t it?\"\n這是你交新朋友的機會！',
+   storyen:"In Houston, you sit on a park bench.\nAn American sits down beside you, smiling:\n\"Beautiful day, isn't it?\"\nThis is your chance to make a new friend!",
+   mike:"You've traveled all the way across America! Now let's end this journey the best way — making a new friend.",
+   wo:[{i:'🤝',e:'Nice to meet you',z:'很高興認識你',x:'Nice to meet you! My name is Linda.'},{i:'🇹🇼',e:'I am from Taiwan',z:'我來自台灣',x:"I'm from Taiwan. This is my first time here."},{i:'👨‍👩‍👧',e:'My daughter lives here',z:'我女兒住在這裡',x:'My daughter lives in Seattle.'},{i:'🏡',e:'I am visiting family',z:'我來探親',x:'I am visiting my family this week.'},{i:'🙏',e:'Thank you',z:'謝謝',x:'Thank you so much for your help!'}],
+   dl:[{r:'staff',a:'👩',e:'Hi! Are you visiting the area?',z:'您好！您是來這裡旅遊的嗎？'},{r:'you',a:'🧑‍🦳',e:"Yes. I'm from Taiwan. Nice to meet you!",z:'是的，我來自台灣。很高興認識你！'},{r:'staff',a:'👩',e:'Welcome! What brings you here?',z:'歡迎！您來這裡的原因是？'},{r:'you',a:'🧑‍🦳',e:'My daughter lives here. I am visiting her.',z:'我女兒住在這裡。我來探望她。'},{r:'staff',a:'👩',e:'How wonderful! Enjoy your time here.',z:'太好了！希望您玩得開心。'}],
+   lq:[{a:'Nice to meet you.',c:['Good to see you.','Nice to meet you.','Have a good day.'],n:1},{a:'I am from Taiwan.',c:['I am from Japan.','I am from Korea.','I am from Taiwan.'],n:2},{a:'I am visiting my family.',c:['I am visiting a friend.','I am visiting my family.','I am here for work.'],n:1}],
+   challenge:'👋 People Challenge',challengeZh:'交友任務',
+   sc:'休士頓公園 · Houston Park',aq:'Where are you from and why are you visiting?',az:'您從哪裡來，這次來的目的？',sg:'I am from Taiwan and I am visiting my daughter.',
+   mikeDone:"You did it! All 10 stops completed! You traveled from Taiwan all the way to Houston. I am SO proud of you. 你真的很棒！ 🏆"}
+];
+const WP=[{x:60,y:50},{x:200,y:90},{x:340,y:140},{x:320,y:210},{x:180,y:260},{x:70,y:310},{x:100,y:380},{x:240,y:420},{x:350,y:470},{x:200,y:530}];
+/* ═══════════ STATE ═══════════ */
+/* Real leg distances (miles), summing to ~8,350 — the true Taiwan→LA→Houston journey.
+   The first two legs are the ~6,800-mile trans-Pacific flight; the rest is the U.S. road trip. */
+const LEGS=[3400,3400,40,250,160,210,180,330,170,210], ROUTE_TOTAL=8350;
+function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function totalMiles(){return STOPS.reduce((a,s,i)=>a+(gS(s.id)==='completed'?LEGS[i]:0),0);}
+let ci=0, lm=0, done=new Set();
+let zh=false, fp=false, rec=false, reco=null, sp='', finalized=false;
+let sx=localStorage.getItem('r66sx')!=='false';
+const gS=id=>localStorage.getItem('r66s_'+id)||'locked';
+const sS=(id,v)=>localStorage.setItem('r66s_'+id,v);
+function init(){if(!localStorage.getItem('r66s_airport')) sS('airport','unlocked');}
+function show(id){document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);if(id==='sh')requestAnimationFrame(()=>requestAnimationFrame(drawRoad));}
+function goHome(){buildMap();buildPassport();show('sh');}
+/* Encode a string so it is safe to drop into a double-quoted onclick="" attribute.
+   JSON.stringify gives a valid JS string literal; we then HTML-escape it so the
+   inner double-quotes don't terminate the attribute (this was breaking all audio). */
+function jsAttr(s){return JSON.stringify(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+/* ═══════════ SOUND EFFECTS (Web Audio) ═══════════ */
+let AC=null;
+function actx(){
+  if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return null;}}
+  if(AC && AC.state==='suspended'){try{AC.resume();}catch(e){}}
+  return AC;
+}
+function tone(freq,start,dur,vol){
+  const c=actx(); if(!c) return;
+  const o=c.createOscillator(), g=c.createGain();
+  o.type='sine'; o.frequency.value=freq;
+  o.connect(g); g.connect(c.destination);
+  const t=c.currentTime+start;
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.linearRampToValueAtTime(vol,t+0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  o.start(t); o.stop(t+dur+0.03);
+}
+function sfx(type){
+  if(!sx) return; if(!actx()) return;
+  if(type==='correct'){ tone(659,0,0.16,0.22); tone(988,0.12,0.24,0.22); }
+  else if(type==='wrong'){ tone(311,0,0.18,0.14); tone(247,0.15,0.22,0.12); }
+  else if(type==='stamp'){ [523,659,784,1047].forEach((f,i)=>tone(f,i*0.12,0.28,0.20)); }
+  else if(type==='finale'){
+    // a longer triumphant fanfare with a final chord
+    [523,587,659,784,880,1047].forEach((f,i)=>tone(f,i*0.13,0.32,0.20));
+    tone(523,0.95,0.9,0.16); tone(659,0.95,0.9,0.16); tone(784,0.95,0.9,0.16); tone(1047,0.95,0.9,0.18);
+  }
+}
+function toggleSx(){
+  sx=!sx;
+  const b=document.getElementById('bSx');
+  b.classList.toggle('on',sx);
+  b.textContent=(sx?'🔊':'🔇')+' 音效';
+  localStorage.setItem('r66sx',sx);
+  if(sx) actx();
+}
+/* ═══════════ MAP ═══════════ */
+function buildMap(){
+  updateMi();
+  let h=`<svg class="route-svg" preserveAspectRatio="none"></svg>
+    <div class="route-cap"><div class="cap-dot">🇹🇼</div><div class="cap-txt">台灣出發 Start<small>Your journey begins · 旅程開始</small></div></div>`;
+  STOPS.forEach((s,i)=>{
+    const st=gS(s.id),dn=st==='completed',op=st==='unlocked',lk=st==='locked';
+    const cls=(dn?'dn':op?'op':'lk')+' '+(i%2===0?'a':'b');
+    const dot=dn?'✓':op?s.ic:'🔒';
+    const badge=dn?'複習 Review ✓':op?'開始 Start ▶':'🔒 鎖定';
+    h+=`<button class="stop-row ${cls}" ${lk?'disabled':`onclick="openStop(${i})"`}>
+      <div class="stop-node"><div class="node-dot">${dot}</div></div>
+      <div class="stop-card">
+        <div class="sc-icon">${s.ic}</div>
+        <div class="sc-text"><div class="sc-en">${i+1}. ${s.en}</div><div class="sc-zh">${s.zh}</div></div>
+        <div class="sc-badge">${badge}</div>
+      </div>
+    </button>`;
+  });
+  h+=`<div class="route-cap"><div class="cap-dot">🏆</div><div class="cap-txt">休士頓 Houston<small>Finish line · 終點</small></div></div>`;
+  document.getElementById('route').innerHTML=h;
+  requestAnimationFrame(drawRoad);
+}
+/* Draw a curvy highway that weaves through every node (and the start/finish caps).
+   Reads live pixel positions so it stays aligned at any screen width. */
+function drawRoad(){
+  const route=document.getElementById('route'); if(!route) return;
+  const svg=route.querySelector('.route-svg'); if(!svg) return;
+  const rb=route.getBoundingClientRect();
+  if(rb.width<10||rb.height<10){ return; } // hidden / not laid out yet
+  const dots=[...route.querySelectorAll('.cap-dot,.node-dot')];
+  const pts=dots.map(d=>{const b=d.getBoundingClientRect();return {x:b.left+b.width/2-rb.left,y:b.top+b.height/2-rb.top};});
+  if(pts.length<2){ svg.innerHTML=''; return; }
+  svg.setAttribute('viewBox',`0 0 ${rb.width} ${rb.height}`);
+  let d=`M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
+  for(let i=1;i<pts.length;i++){
+    const p=pts[i-1],c=pts[i],my=(p.y+c.y)/2;
+    d+=` C ${p.x.toFixed(1)} ${my.toFixed(1)}, ${c.x.toFixed(1)} ${my.toFixed(1)}, ${c.x.toFixed(1)} ${c.y.toFixed(1)}`;
+  }
+  svg.innerHTML=
+    `<path d="${d}" fill="none" stroke="#2E2A25" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>`+
+    `<path d="${d}" fill="none" stroke="#5A544C" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>`+
+    `<path d="${d}" fill="none" stroke="#E8C840" stroke-width="2.5" stroke-dasharray="9 13" stroke-linecap="round" opacity=".85"/>`;
+}
+window.addEventListener('resize',()=>{requestAnimationFrame(drawRoad);});
+function updateMi(){
+  const tm=totalMiles(), comp=STOPS.filter(s=>gS(s.id)==='completed').length;
+  document.getElementById('md').textContent=fmt(tm);
+  document.getElementById('mf').style.width=(comp/STOPS.length*100)+'%';
+  document.getElementById('sd').textContent=comp+'/'+STOPS.length;
+}
+/* ═══════════ PASSPORT ═══════════ */
+function buildPassport(){
+  const cols=['#3A6B48','#2C6FA0','#C8570A','#9A3B6B','#1A6A5A','#B03030','#5A4B9A','#7A6010','#2E7D8A','#A0431A'];
+  const rots=[-6,5,-4,7,-7,4,-5,6,-3,5];
+  const g=document.getElementById('stamps-grid');
+  const comp=STOPS.filter(s=>gS(s.id)==='completed').length;
+  const pc=document.getElementById('passcount');
+  if(pc) pc.innerHTML=`🛂 ${comp} / ${STOPS.length} 個紀念章<small>蓋滿你的旅程 · Collect every stamp</small>`;
+  g.innerHTML=STOPS.map((s,i)=>{const dn=gS(s.id)==='completed';
+    if(dn){
+      return `<div class="stamp-item earned" style="--c:${cols[i%cols.length]};transform:rotate(${rots[i%rots.length]}deg)">
+        <div class="st-top">★ Route 66 ★</div>
+        <div class="st-ic">${s.ic}</div>
+        <div class="st-nm">${s.en}</div>
+        <div class="st-zh">${s.zh}</div>
+        <div class="st-bot">✓ Visited</div>
+      </div>`;
+    }
+    return `<div class="stamp-item locked">
+      <div class="st-ic">🔒</div>
+      <div class="st-nm">${s.en}</div>
+      <div class="st-zh">${s.zh}</div>
+      <div class="st-bot">未蓋章</div>
+    </div>`;}).join('');
+}
+/* ═══════════ OPEN STOP ═══════════ */
+function openStop(idx){
+  ci=idx; lm=LEGS[idx]; done=new Set(); zh=false; sp='';
+  const s=STOPS[idx];
+  const hdr=document.getElementById('shdr');
+  hdr.style.background=s.color||'var(--nv)';
+  document.getElementById('shn').textContent=`${s.ic} ${s.en}`;
+  document.getElementById('shz').textContent=s.zh+(gS(s.id)==='completed'?' · 複習 Review':'');
+  document.getElementById('lc').textContent='+'+fmt(LEGS[idx])+' mi';
+  document.getElementById('lp').style.width='0%';
+  document.getElementById('acts-wrap').style.display='none';
+  document.getElementById('scene-wrap').style.display='block';
+  buildScene(s);
+  show('sstop');
+}
+function buildScene(s){
+  const w=document.getElementById('scene-wrap');
+  w.innerHTML=`
+    <div class="scene-card">
+      <div class="scene-banner" style="background:linear-gradient(160deg,${s.color||'#1A3A5C'} 0%,${s.color||'#2C5A8C'}cc 100%)">
+        <div class="scene-icon">${s.ic}</div>
+        <div class="scene-stop">Stop ${ci+1} of 10</div>
+        <div class="scene-title">${s.en} · ${s.zh}</div>
+      </div>
+      <div class="scene-body">
+        <div class="scene-story">${s.story.split('\n').join('<br>')}</div>
+        <div class="scene-listen">
+          <button class="ab wide" onclick="say(${jsAttr(s.storyen)},this)">🔊 English</button>
+          <button class="ab wide" onclick="say(${jsAttr(s.storyen)},this,0.45)">🐢 Slow</button>
+        </div>
+        <div class="mike-bubble">
+          <div class="mike-av">🧑‍🦱</div>
+          <div class="mike-body">
+            <div class="mike-name">Mike · Route 66 Guide</div>
+            <div class="mike-text">${s.mike}</div>
+            <button class="ab sm" style="margin-top:8px" onclick="say(${jsAttr(s.mike)},this)">🔊</button>
+          </div>
+        </div>
+        <button class="start-stop-btn" onclick="startActivities()">出發！Let's Go! →</button>
+      </div>
+    </div>`;
+}
+function startActivities(){
+  document.getElementById('scene-wrap').style.display='none';
+  document.getElementById('acts-wrap').style.display='block';
+  ['w','c','l','s'].forEach(t=>{document.getElementById('t'+t).className='atab';});
+  document.getElementById('tw').classList.add('on');
+  ['sw','sc2','sl2','ss'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('sw').style.display='block';
+  const s=STOPS[ci];
+  bW(s); bC(s); bL(s); bS(s);
+}
+function sTab(t){
+  ['w','c','l','s'].forEach(id=>{
+    document.getElementById('t'+id).classList.toggle('on',id===t);
+    const sid=id==='w'?'sw':id==='c'?'sc2':id==='l'?'sl2':'ss';
+    document.getElementById(sid).style.display=id===t?'block':'none';
+  });
+}
+function cSec(id,nx,pts){
+  if(!done.has(id)){done.add(id);document.getElementById('t'+id).classList.add('dn');}
+  document.getElementById('lp').style.width=(done.size/4*100)+'%';
+  if(nx) sTab(nx);
+}
+/* WORDS */
+function bW(s){
+  document.getElementById('sw').innerHTML=
+    `<p style="font-size:var(--f0);color:var(--gr);margin-bottom:14px">🔊 聽發音 · 🐢 放慢 · 📖 看例句</p>`
+    +s.wo.map((w,i)=>`<div class="vcard">
+      <div class="vcard-main"><div class="vic">${w.i}</div><div style="flex:1"><div class="ven">${w.e}</div><div class="vzh">${w.z}</div></div></div>
+      <div class="vcard-btns">
+        <button class="vbtn" onclick="say(${jsAttr(w.e)},this)">🔊 Listen</button>
+        <button class="vbtn" onclick="say(${jsAttr(w.e)},this,0.45)">🐢 Slow</button>
+        <button class="vbtn" onclick="toggleEx(${i})">📖 More</button>
+      </div>
+      <div class="vex" id="vex${i}"><em>"${w.x}"</em>
+        <button class="ab sm" style="margin-top:8px" onclick="say(${jsAttr(w.x)},this)">🔊</button>
+        <button class="ab sm" style="margin-top:8px" onclick="say(${jsAttr(w.x)},this,0.45)">🐢</button>
+      </div>
+    </div>`).join('')
+    +`<button class="next-btn" onclick="cSec('w','c',30)">繼續 → Travel Conversation</button>`;
+}
+function toggleEx(i){const el=document.getElementById('vex'+i);el.style.display=el.style.display==='block'?'none':'block';}
+/* CONV */
+function bC(s){
+  document.getElementById('sc2').innerHTML=
+    `<div class="dlg-scene">
+      <div style="font-size:var(--f3)">💬</div>
+      <div style="flex:1"><div style="font-size:var(--f1);font-weight:700">${s.sc}</div></div>
+      <button class="dlg-play-all" id="pfb" onclick="playAll()">▶ Play All</button>
+    </div>
+    <button class="zh-tog" onclick="togZH()">🇹🇼 <span id="zhl">顯示中文</span></button>
+    <div class="dlg-wrap">${s.dl.map(d=>`<div class="drow ${d.r}">
+      <div class="dwho"><div class="dav">${d.a}</div><div class="drl">${d.r==='staff'?'Staff':'You'}</div></div>
+      <div class="dmid"><div class="den">${d.e}</div><div class="dzh">${d.z}</div></div>
+      <div class="daud">
+        <button class="ab sm" onclick="say(${jsAttr(d.e)},this)">🔊</button>
+        <button class="ab sm" onclick="say(${jsAttr(d.e)},this,0.45)">🐢</button>
+      </div>
+    </div>`).join('')}</div>
+    <button class="next-btn" onclick="cSec('c','l',30)">繼續 → ${STOPS[ci].challenge}</button>`;
+}
+/* LISTEN */
+function bL(s){
+  document.getElementById('sl2').innerHTML=
+    `<div class="challenge-hd" style="background:linear-gradient(135deg,${s.color||'#1A3A5C'},${s.color||'#2C5A8C'})">
+      <div class="ch-title">${s.challenge}</div>
+      <div class="ch-sub">${s.challengeZh} · 聽一聽，選一選</div>
+    </div>`
+    +s.lq.map((q,i)=>`<div id="lq${i}" class="lcard" style="margin-bottom:12px;${i>0?'display:none':''}">
+      <div class="lcard-q">挑戰 ${i+1} / 3</div>
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <button class="play-q" id="pb${i}" style="flex:1" onclick="playQ(${jsAttr(q.a)},${i})">▶ 播放 Play</button>
+        <button class="play-q" style="flex:0 0 auto;background:var(--bl);padding:13px 16px" onclick="say(${jsAttr(q.a)},this,0.45)">🐢</button>
+      </div>
+      <div style="font-size:var(--f0);color:var(--gr);margin-bottom:10px">你聽到了什麼？</div>
+      <div class="choices">${q.c.map((c,j)=>`<button class="cbtn" onclick="chkL(this,${j},${q.n},${i})">${['A','B','C'][j]}. ${c}</button>`).join('')}</div>
+      <div id="lr${i}" class="res" style="display:none"></div>
+    </div>`).join('')
+    +`<button id="bts" class="next-btn" style="display:none" onclick="cSec('l','s',40)">繼續 → Speaking Practice</button>`;
+}
+function playQ(t,i){say(t,document.getElementById('pb'+i));}
+function chkL(btn,j,ans,qi){
+  btn.closest('.choices').querySelectorAll('.cbtn').forEach(b=>b.disabled=true);
+  const r=document.getElementById('lr'+qi);
+  if(j===ans){btn.classList.add('ok');r.textContent='✅ 答對了！Correct!';r.className='res ok';sfx('correct');}
+  else{btn.classList.add('no');btn.closest('.choices').querySelectorAll('.cbtn')[ans].classList.add('ok');r.textContent='❌ 再試一次！正確答案已標示';r.className='res no';sfx('wrong');}
+  r.style.display='block';
+  setTimeout(()=>{const n=document.getElementById('lq'+(qi+1));if(n){document.getElementById('lq'+qi).style.display='none';n.style.display='block';}else document.getElementById('bts').style.display='block';},1600);
+}
+/* SPEAK */
+function bS(s){
+  document.getElementById('ss').innerHTML=
+    `<div class="speak-scene">
+      <div class="sl">🎤 Speaking Practice · ${s.sc}</div>
+      <div class="sq">"${s.aq}"</div>
+      <div class="sz">${s.az}</div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button class="ab wide" onclick="say(${jsAttr(s.aq)},this)">🔊 Listen</button>
+        <button class="ab wide" onclick="say(${jsAttr(s.aq)},this,0.45)">🐢 Slow</button>
+      </div>
+    </div>
+    <div class="sug-box"><div class="sl2">💡 建議回答 Suggested answer</div><div class="st">"${s.sg}"</div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button class="ab wide" onclick="say(${jsAttr(s.sg)},this)">🔊 Listen</button>
+        <button class="ab wide" onclick="say(${jsAttr(s.sg)},this,0.45)">🐢 Slow</button>
+      </div></div>
+    <div class="mic-wrap"><button class="mic-btn" id="mbtn" onclick="togMic()">🎤</button><div class="mic-lbl" id="mbl">點一下開始說話 Tap to speak</div></div>
+    <button class="skip-link" onclick="skipSpeak()">先跳過，直接完成這一站 Skip & finish →</button>
+    <div id="fba"></div>
+    <button id="finb" class="next-btn gn" style="display:none" onclick="finish()">🎉 完成這一站！Complete Stop</button>`;
+}
+/* MIC — robust, never a dead-end */
+function micUI(on){
+  const b=document.getElementById('mbtn'),l=document.getElementById('mbl'); if(!b) return;
+  if(on){ b.classList.add('rec'); b.textContent='⏹'; l.textContent='錄音中… 點一下停止 Recording… tap to stop'; }
+  else { b.classList.remove('rec'); b.textContent='🎤'; l.textContent='點一下開始說話 Tap to speak'; }
+}
+function togMic(){ rec ? endRec() : startR(); }
+function startR(){
+  rec=true; sp=''; finalized=false;
+  micUI(true);
+  document.getElementById('fba').innerHTML='';
+  document.getElementById('finb').style.display='none';
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR){
+    try{
+      reco=new SR(); reco.lang='en-US'; reco.interimResults=true; reco.maxAlternatives=1;
+      reco.onresult=e=>{sp=Array.from(e.results).map(r=>r[0].transcript).join('');};
+      reco.onerror=()=>endRec();
+      reco.onend=()=>endRec();
+      reco.start();
+    }catch(e){ rec=false; micUI(false); manualFallback('（此瀏覽器無法使用麥克風）'); }
+  } else {
+    rec=false; micUI(false);
+    manualFallback('（此瀏覽器不支援語音辨識）');
+  }
+}
+function endRec(){
+  if(finalized) return; finalized=true;
+  rec=false; micUI(false);
+  if(reco){try{reco.stop();}catch(e){} reco=null;}
+  if(sp) showFB(sp); else manualFallback('（沒有聽到聲音）');
+}
+function awardSpeak(){
+  if(!done.has('s')){done.add('s');document.getElementById('ts').classList.add('dn');document.getElementById('lp').style.width='100%';}
+}
+function showFB(said){
+  const sug=STOPS[ci].sg, cl=s=>s.toLowerCase().replace(/[.,!?'"]/g,'').trim();
+  const words=cl(sug).split(' ').filter(Boolean);
+  const match=words.filter(w=>cl(said).includes(w)).length/Math.max(words.length,1);
+  const fa=document.getElementById('fba');
+  const good=match>=0.5;
+  const mikeText=good?STOPS[ci].mikeDone:"Almost there! Listen again, then read it aloud one more time. You can do it!";
+  if(good){
+    sfx('correct');
+    fa.innerHTML=`<div class="fb-great"><div class="fb-h">⭐ Great job! 太棒了！</div><div class="fb-row">你說了 You said：<strong>"${said}"</strong></div></div>`;
+  } else {
+    fa.innerHTML=`<div class="fb-try"><div class="fb-h">🔄 Try again! 再試一次</div><div class="fb-row">你說了 You said：<strong>"${said||'（沒有聲音）'}"</strong></div><div class="fb-row" style="margin-top:6px">建議 Suggested：<strong>"${sug}"</strong> <button class="ab sm" style="display:inline-flex;vertical-align:middle" onclick="say(${jsAttr(sug)},this,0.45)">🐢</button></div></div>`;
+  }
+  fa.innerHTML+=`<div class="mike-fb"><div class="mike-av">🧑‍🦱</div><div class="mike-body"><div class="mike-name">Mike</div><div class="mike-text">${mikeText}</div></div></div>`;
+  awardSpeak();
+  document.getElementById('finb').style.display='block';
+}
+function manualFallback(reason){
+  const sug=STOPS[ci].sg;
+  const fa=document.getElementById('fba');
+  fa.innerHTML=`<div class="fb-try"><div class="fb-h">🎧 沒關係！No problem!</div>
+    <div class="fb-row">${reason||''} 跟著一起唸唸看 Read it aloud：</div>
+    <div class="fb-row" style="margin-top:6px"><strong>"${sug}"</strong></div>
+    <div class="fb-row" style="margin-top:10px;display:flex;gap:8px">
+      <button class="ab wide" onclick="say(${jsAttr(sug)},this)">🔊 Listen</button>
+      <button class="ab wide" onclick="say(${jsAttr(sug)},this,0.45)">🐢 Slow</button>
+    </div></div>
+    <div class="mike-fb"><div class="mike-av">🧑‍🦱</div><div class="mike-body"><div class="mike-name">Mike</div><div class="mike-text">Practice makes perfect! Say it a few times, then tap to complete the stop.</div></div></div>`;
+  awardSpeak();
+  document.getElementById('finb').style.display='block';
+}
+function skipSpeak(){
+  document.getElementById('fba').innerHTML=
+    `<div class="mike-fb"><div class="mike-av">🧑‍🦱</div><div class="mike-body"><div class="mike-name">Mike</div><div class="mike-text">No problem — you can practice speaking anytime. Let's complete this stop!</div></div></div>`;
+  awardSpeak();
+  const f=document.getElementById('finb'); f.style.display='block'; f.scrollIntoView({behavior:'smooth'});
+}
+/* FINISH */
+function finish(){
+  const s=STOPS[ci],nx=STOPS[ci+1];
+  sS(s.id,'completed'); if(nx && gS(nx.id)==='locked') sS(nx.id,'unlocked');
+  const allDone=STOPS.every(st=>gS(st.id)==='completed');
+  const cgame=document.getElementById('cgame'),dnote=document.getElementById('dnote'),stopBlk=document.getElementById('cstop-block');
+  document.getElementById('cmb').textContent=`+${fmt(LEGS[ci])} Miles 🛣️`;
+  if(allDone){
+    // ── WHOLE GAME COMPLETE ──
+    sfx('finale');
+    cgame.style.display='block'; dnote.style.display='flex'; stopBlk.style.display='none';
+    document.getElementById('cnb').textContent='🎉 你完成了全部 10 站！All 10 stops complete! 🎉';
+    document.getElementById('cmsg').textContent='你是真正的英文旅行家！You are a true English traveler! 🌟';
+    burstConfetti(150);
+  } else {
+    // ── single stop complete ──
+    sfx('stamp');
+    cgame.style.display='none'; dnote.style.display='none'; stopBlk.style.display='block';
+    document.getElementById('cst').textContent=s.ic;
+    document.getElementById('cel-h1').textContent='Stop Complete!';
+    document.getElementById('csb').textContent=`${s.en} Stamp Collected! ${s.ic}`;
+    document.getElementById('czb').textContent=`恭喜完成「${s.zh}」！`;
+    document.getElementById('cnb').textContent=nx?`🔓 下一站解鎖！${nx.ic} ${nx.en} — ${nx.zh}`:'🏆 全部完成！';
+    document.getElementById('cmsg').textContent=nx?`繼續前往：${nx.zh}`:'';
+    burstConfetti(40);
+  }
+  show('scel');
+}
+function burstConfetti(n){
+  const box=document.getElementById('confetti'); if(!box) return;
+  box.innerHTML='';
+  const cols=['#E8C840','#C8570A','#2C6FA0','#3A6B48','#E85050','#F5A623'];
+  for(let i=0;i<n;i++){
+    const c=document.createElement('div'); c.className='cft';
+    c.style.left=Math.random()*100+'%';
+    c.style.background=cols[i%cols.length];
+    c.style.animationDuration=(2.2+Math.random()*2.2)+'s';
+    c.style.animationDelay=(Math.random()*0.6)+'s';
+    c.style.transform='rotate('+(Math.random()*360)+'deg)';
+    if(Math.random()>0.6) c.style.borderRadius='50%';
+    box.appendChild(c);
+  }
+  setTimeout(()=>{ if(box) box.innerHTML=''; },5200);
+}
+/* ═══════════ AUDIO (Text-to-Speech) ═══════════ */
+let VOICE=null, voicesReady=false;
+function loadVoices(){
+  if(!window.speechSynthesis) return;
+  const vs=speechSynthesis.getVoices();
+  if(vs && vs.length){
+    // Prefer high-quality, natural-sounding voices by name (cross-platform)
+    const pref=['Google US English','Samantha','Microsoft Aria','Microsoft Jenny','Microsoft Michelle','Microsoft Guy','Microsoft Zira','Alex','Karen','Daniel','Google UK English Female'];
+    for(const name of pref){ const m=vs.find(v=>v.name && v.name.indexOf(name)!==-1); if(m){VOICE=m;voicesReady=true;return;} }
+    VOICE=vs.find(v=>/en[-_]US/i.test(v.lang))
+        ||vs.find(v=>/en[-_](GB|AU|CA)/i.test(v.lang))
+        ||vs.find(v=>/^en/i.test(v.lang))||null;
+    voicesReady=true;
+  }
+}
+if(window.speechSynthesis){ loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; setTimeout(loadVoices,500); setTimeout(loadVoices,1500); }
+/* Unlock audio on the very first tap anywhere (browsers require a user gesture) */
+let audioUnlocked=false;
+function unlockAudio(){
+  if(audioUnlocked) return; audioUnlocked=true;
+  actx();
+  if('speechSynthesis' in window){
+    try{ const w=new SpeechSynthesisUtterance(' '); w.volume=0; speechSynthesis.speak(w); }catch(e){}
+  }
+}
+document.addEventListener('pointerdown',unlockAudio,{once:true});
+document.addEventListener('click',unlockAudio,{once:true});
+function say(text,btn,rate){
+  if(!('speechSynthesis' in window)){ if(btn) btn.classList.remove('pl'); return; }
+  unlockAudio();
+  try{ speechSynthesis.cancel(); }catch(e){}
+  if(btn) btn.classList.add('pl');
+  const go=()=>{
+    if(!VOICE) loadVoices();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US'; u.rate=rate||0.95; u.pitch=1; u.volume=1;
+    if(VOICE) u.voice=VOICE;
+    u.onend=u.onerror=()=>{ if(btn) btn.classList.remove('pl'); };
+    try{ speechSynthesis.speak(u); }catch(e){ if(btn) btn.classList.remove('pl'); }
+    // Chrome can pause/stall right after speak() — nudge it
+    setTimeout(()=>{ try{ if(speechSynthesis.paused) speechSynthesis.resume(); }catch(e){} },200);
+  };
+  // A short delay avoids the Chrome cancel→speak race that silently drops audio,
+  // and gives voices time to load on the first play.
+  setTimeout(go,80);
+}
+async function playAll(){
+  if(fp) return; fp=true;
+  const btn=document.getElementById('pfb');
+  btn.classList.add('pl'); btn.textContent='⏸ Playing...';
+  if(!VOICE) loadVoices();
+  for(const d of STOPS[ci].dl){
+    await new Promise(res=>{
+      try{speechSynthesis.cancel();}catch(e){}
+      const u=new SpeechSynthesisUtterance(d.e);
+      u.lang='en-US'; u.rate=0.85; if(VOICE) u.voice=VOICE;
+      u.onend=res; u.onerror=res;
+      speechSynthesis.speak(u);
+      setTimeout(()=>{ try{ if(speechSynthesis.paused) speechSynthesis.resume(); }catch(e){} },250);
+    });
+    await new Promise(r=>setTimeout(r,380));
+  }
+  btn.classList.remove('pl'); btn.textContent='▶ Play All'; fp=false;
+}
+function togZH(){
+  zh=!zh;
+  document.querySelectorAll('.dzh').forEach(el=>el.style.display=zh?'block':'none');
+  const l=document.getElementById('zhl'); if(l) l.textContent=zh?'隱藏中文':'顯示中文';
+}
+/* ACCESSIBILITY */
+function toggleL(){document.body.classList.toggle('LG');document.getElementById('bL').classList.toggle('on');localStorage.setItem('r66lg',document.body.classList.contains('LG'));requestAnimationFrame(()=>requestAnimationFrame(drawRoad));}
+function toggleH(){document.body.classList.toggle('HC');document.getElementById('bH').classList.toggle('on');localStorage.setItem('r66hc',document.body.classList.contains('HC'));requestAnimationFrame(()=>requestAnimationFrame(drawRoad));}
+function resetAll(){
+  if(!confirm('確定要重新開始嗎？所有進度與紀念章都會清除，無法復原。\n\nReset everything? All progress and stamps will be erased. This cannot be undone.')) return;
+  Object.keys(localStorage).filter(k=>k.indexOf('r66s_')===0).forEach(k=>localStorage.removeItem(k));
+  localStorage.removeItem('r66m');
+  init(); buildMap(); buildPassport(); goHome();
+}
+/* INIT */
+init(); updateMi(); buildMap(); buildPassport();
+if(localStorage.getItem('r66lg')==='true') toggleL();
+if(localStorage.getItem('r66hc')==='true') toggleH();
+(function(){const b=document.getElementById('bSx'); b.classList.toggle('on',sx); b.textContent=(sx?'🔊':'🔇')+' 音效';})();
+</script></body></html>
